@@ -11,9 +11,14 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/cortos">Lista Cortos</a>
+                    <a class="nav-link" href="/cortos">Cortos</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="/directores">Directores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios">Usuarios</a>
+                </li>
             </ul>
         </div>
 </nav>

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CortoRequest;
 use Illuminate\Http\Request;
+use App\Models\Corto;
 
 class CortosController extends Controller
 {
 
 
-    private array $cortos = [
+    /*private array $cortos = [
         [
             'id' => 1,
             'titulo' => 'Teoría de PHP para dormir',
@@ -39,27 +41,69 @@ class CortosController extends Controller
             'director' => 'Gonzalo',
             'sinapsis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
         ]
-    ];
+    ];*/
 
 
     /**
      * Display a listing of the resource.
      */
-    public function index() {
-        return view('list')->with('cortos', $this->cortos);
+    public function index()
+    {
+        $cortos = Corto::with(['director', 'usuario'])->get();
+
+        return view('cortos.index')->with('cortos', $cortos);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {
-        $cortoReturn = "corto";
-        foreach ($this->cortos as $corto) {
-            if ($corto['id'] == $id) {
-                $cortoReturn = $corto;
-            }
-        }
-        
-        return view('show-corto')->with('corto', $cortoReturn);
+    public function show(string $id)
+    {
+        // Con Find se recupera el corto que tenga ese id.
+        // Con FindOrFail el servidor se encarga de enviar el 'not found 404'
+        $corto = Corto::with('director')->findOrFail($id);
+        return view('cortos.show', compact('corto'));
     }
+
+    /*
+    * Delete a resource.
+    */
+    public function destroy($id)
+    {
+        Corto::findOrFail($id)->delete();
+        $cortos = Corto::get();
+        return view('cortos.index', compact('cortos'));
+    }
+
+    /**
+     * 
+     * Actualizar un corto
+     */
+    public function edit($id)
+    {
+        $corto = Corto::findOrFail($id);
+        return view("cortos.index", compact('corto'));
+    }
+
+    /**
+     * Devuelve la vista para la creación de un corto nuevo
+     */
+    public function create()
+    {
+        return view("cortos.create");
+    }
+
+    public function store(CortoRequest $request)
+    {
+
+        $newCorto = new Corto();
+        $newCorto->title = $request['title'];
+        $newCorto->sinapsis = $request->get('sinapsis');
+        $newCorto->user_id = $request['user_id'];
+        $newCorto->director_id = $request['director_id'];
+        // Guardar el nuevo corto en la BD
+        $newCorto->save();
+    }
+
+    public function update(CortoRequest $request) {}
 }
