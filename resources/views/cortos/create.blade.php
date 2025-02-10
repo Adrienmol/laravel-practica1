@@ -6,7 +6,6 @@
     <a href="{{ route('cortos.index') }}" class="btn btn-primary mb-2">Volver</a>
     <form action="{{ route('cortos.store') }}" method="POST">
         @csrf
-        @method('PUT')
         <p>
             <label for="title">Título:</label>
             <input type="text" name="title" id="title">
@@ -25,4 +24,13 @@
         </p>
         <input type="submit" value="Crear">
     </form>
+
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
 @endsection

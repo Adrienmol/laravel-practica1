@@ -3,7 +3,7 @@
 @section('titulo', 'Directores')
 
 @section('contenido')
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-column">
         @foreach ($directores as $director)
             <div class="card m-1">
                 <div class="card-body">

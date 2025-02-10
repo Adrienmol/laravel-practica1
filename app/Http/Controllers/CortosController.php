@@ -74,15 +74,11 @@ class CortosController extends Controller
         $cortos = Corto::get();
         return view('cortos.index', compact('cortos'));
     }
-
-    /**
-     * 
-     * Actualizar un corto
-     */
+   
     public function edit($id)
     {
         $corto = Corto::findOrFail($id);
-        return view("cortos.index", compact('corto'));
+        return view("cortos.edit", compact('corto'));
     }
 
     /**
@@ -103,7 +99,20 @@ class CortosController extends Controller
         $newCorto->director_id = $request['director_id'];
         // Guardar el nuevo corto en la BD
         $newCorto->save();
+
+        return redirect()->route('cortos.index');
     }
 
-    public function update(CortoRequest $request) {}
+    public function update(CortoRequest $request, Corto $corto) 
+    {
+        $corto->title = $request['title'];
+        $corto->sinapsis = $request['sinapsis'];
+        $corto->user_id = $request['user_id'];
+        $corto->director_id = $request['director_id'];
+
+        $corto->save();
+
+        return redirect()->route('cortos.index');
+
+    }
 }

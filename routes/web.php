@@ -12,7 +12,7 @@ Route::get('/', function () {
 // Con resource se crean todas las rutas con raiz el controlador especificado (controlador de recursos)
 Route::resource('cortos', CortosController::class);
 
-Route::resource('directores', DirectorsController::class)->only(['index', 'show']);
+Route::resource('directores', DirectorsController::class);
 
-Route::resource('usuarios', UsersController::class)->only(['index', 'show']);
+Route::resource('usuarios', UsersController::class);
 

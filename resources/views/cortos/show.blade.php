@@ -8,7 +8,10 @@
             <p class="card-text">{{ $corto['sinapsis'] }}</p>
         </div>
         <div class="card-footer text-muted">{{ $corto->director['name'] }}</div>
+
         <a href="{{ route('cortos.index') }}"><button type="button" class="btn btn-primary mb-2">Volver</button></a>
+
+        <a href="{{ route('cortos.edit', $corto['id']) }}"><button class="btn btn-primary mb-2">Editar</button></a>
         
         <form action="{{ route('cortos.destroy', $corto['id']) }}" method="POST">
             @method('DELETE')

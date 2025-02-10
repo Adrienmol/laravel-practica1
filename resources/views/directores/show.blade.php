@@ -2,7 +2,13 @@
 @section('titulo', $director['name'])
 @section('contenido')
     <div class="card text-center">
-        <div class="card-header">{{$director['name']}}</div>
+        <div class="card-header mb-4">
+            <h1>{{$director['name']}}</h1>
+            <a href="{{ route('directores.edit', $director['id']) }}"><button class="btn btn-primary">Editar</button></a>
+        </div>
+
+        
+
         <h1>Cortos:</h1>
         @foreach ($director->cortos as $corto)
         <div class="card m-1">
