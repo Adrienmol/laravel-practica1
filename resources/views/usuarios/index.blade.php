@@ -3,7 +3,8 @@
 @section('titulo', 'Usuarios')
 
 @section('contenido')
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-column">
+        <a href="{{ route('usuarios.create') }}" class="btn btn-primary">Añadir un usuario</a>
         @foreach ($usuarios as $usuario)
             <div class="card m-1">
                 <div class="card-body">
