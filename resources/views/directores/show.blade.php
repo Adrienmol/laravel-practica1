@@ -5,9 +5,12 @@
         <div class="card-header mb-4">
             <h1>{{$director['name']}}</h1>
             <a href="{{ route('directores.edit', $director['id']) }}"><button class="btn btn-primary">Editar</button></a>
+            <form action="{{ route('directores.destroy', $director['id']) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <input type="submit" class="btn btn-danger" value="Borrar"></input>
+            </form>
         </div>
-
-        
 
         <h1>Cortos:</h1>
         @foreach ($director->cortos as $corto)

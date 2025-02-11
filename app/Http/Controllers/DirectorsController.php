@@ -40,7 +40,7 @@ class DirectorsController extends Controller
      */
     public function create()
     {
-        return view("cortos.create");
+        return view("directores.create");
     }
 
     public function store(DirectorRequest $request)
@@ -65,5 +65,15 @@ class DirectorsController extends Controller
 
         return redirect()->route('directores.index');
 
+    }
+
+    /*
+    * Delete a resource.
+    */
+    public function destroy($id)
+    {
+        Director::findOrFail($id)->delete();
+        $directores = Director::get();
+        return view('directores.index', compact('directores'));
     }
 }

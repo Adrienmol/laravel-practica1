@@ -4,6 +4,7 @@
 
 @section('contenido')
     <div class="d-flex flex-column">
+        <a href="{{ route('directores.create') }}" class="btn btn-primary">Añadir un director</a>
         @foreach ($directores as $director)
             <div class="card m-1">
                 <div class="card-body">

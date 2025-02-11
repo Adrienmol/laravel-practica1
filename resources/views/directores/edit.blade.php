@@ -3,9 +3,7 @@
 @section('titulo', 'Editar Director')
 
 @section('contenido')
-<?php
-    var_dump($director['id']);
-?>
+
     <a href="{{ route('directores.index') }}" class="btn btn-primary mb-2">Volver</a>
     <form action="{{ route('directores.update', $director['id']) }}" method="POST">
         @csrf   
